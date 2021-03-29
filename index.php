@@ -15,12 +15,34 @@
 <body>
     <section class="block__registr-autorization" id="moduleAutoRegistr">
         <div class="block__autorization" id="moduleAutorization">
-            <form action="" method="POST" onsubmit="">
-
+            <div class="block__close-icon" onclick="closeModule(this)">
+                <img src="img/icons/cancel.png" alt="errorUpImage">
+            </div>
+            <form action="" method="POST" onsubmit="return AutorizationCheck()">
+                <div class="block__inner">
+                    <h2>Авторизация</h2>
+                    <div class="block__registr-input-box">
+                        <h3>Логин</h3>
+                        <input type="text">
+                        <h4></h4>
+                    </div>
+                    <div class="block__registr-input-box">
+                        <h3>Пароль</h3>
+                        <input type="password">
+                        <h4></h4>
+                    </div>
+                    <div class="block__autorization-submit-box">
+                        <input type="submit" value="Авторизироваться">
+                    </div>
+                    <!-- Добавить переход на странице с регистрацией -->
+                </div>
             </form>
         </div>
         <div class="block__registr" id="moduleRegistr">
-            <form action="" method="POST" onsubmit="registrCheck(); return false">
+            <div class="block__close-icon" onclick="closeModule(this)">
+                <img src="img/icons/cancel.png" alt="errorUpImage">
+            </div>
+            <form action="" method="POST" onsubmit="return registrCheck();">
                 <div class="block__inner-registr">
                     <h2>Регистарция</h2>
                     <div class="block__registr-input-box">
