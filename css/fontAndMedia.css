@@ -1,0 +1,25 @@
+/*Прописать шрифты и медиа*/
+@font-face {
+    font-family: 'CormoranSC-Bold';
+    src: url("../font/CormorantSC-Bold.ttf");
+}
+
+@font-face {
+    font-family: 'CormoranSC-Light';
+    src: url("../font/CormorantSC-Light.ttf");
+}
+
+@font-face {
+    font-family: 'CormoranSC-Regular';
+    src: url("../font/CormorantSC-Regular.ttf");
+}
+
+h1 {
+    font-family: 'CormoranSC-Bold', sans-serif;
+}
+h2{
+    font-family: 'CormoranSC-Regular', sans-serif;
+}
+h3, h4{
+    font-family: 'CormoranSC-Light', sans-serif;
+}
