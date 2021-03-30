@@ -17,6 +17,18 @@ userBlock.addEventListener('click', () => {
         blockModuleAutorization.style.display = 'block';
     }
 })
+//Перенаправление на модуль регистрация
+const registrLink = document.getElementById('registrLink');
+registrLink.addEventListener('click', ()=>{
+    blockModuleRegistrInput.style.display = 'block';
+    blockModuleAutorization.style.display = 'none';
+})
+// Перенаправление на модуль авторизация
+const autorizationLink = document.getElementById('autorizationLink');
+autorizationLink.addEventListener('click', ()=>{
+    blockModuleRegistrInput.style.display = 'none';
+    blockModuleAutorization.style.display = 'block';
+})
 //Закрытие окна регистрации и авторизации
 function closeModule(element) {
     moduleAutoRegistr.style.display = 'none';

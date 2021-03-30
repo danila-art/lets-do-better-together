@@ -1,3 +1,7 @@
+<?php
+//echo "Куки-".$_COOKIE['userLogin'];
+?>
+
 <!doctype html>
 <html lang="ru">
 
@@ -18,23 +22,26 @@
             <div class="block__close-icon" onclick="closeModule(this)">
                 <img src="img/icons/cancel.png" alt="errorUpImage">
             </div>
-            <form action="" method="POST" onsubmit="return AutorizationCheck()">
+            <form action="php/autorization_user.php" method="POST" onsubmit="return AutorizationCheck()">
                 <div class="block__inner">
                     <h2>Авторизация</h2>
                     <div class="block__registr-input-box">
                         <h3>Логин</h3>
-                        <input type="text">
+                        <input type="text" name="login">
                         <h4></h4>
                     </div>
                     <div class="block__registr-input-box">
                         <h3>Пароль</h3>
-                        <input type="password">
+                        <input type="password" name="password">
                         <h4></h4>
                     </div>
                     <div class="block__autorization-submit-box">
                         <input type="submit" value="Авторизироваться">
                     </div>
-                    <!-- Добавить переход на странице с регистрацией -->
+                    <div class="block__link">
+                        <h3>Если вы еще не зарегистрированы</h3>
+                        <h3 id="registrLink">Зарегистрируйтесь</h3>
+                    </div>
                 </div>
             </form>
         </div>
@@ -42,32 +49,32 @@
             <div class="block__close-icon" onclick="closeModule(this)">
                 <img src="img/icons/cancel.png" alt="errorUpImage">
             </div>
-            <form action="" method="POST" onsubmit="return registrCheck();">
-                <div class="block__inner-registr">
+            <form action="php/registr_user.php" method="POST" onsubmit="return registrCheck();">
+                <div class="block__inner">
                     <h2>Регистарция</h2>
                     <div class="block__registr-input-box">
                         <h3>Введите ФИО</h3>
-                        <input type="text">
+                        <input type="text" name="FIO">
                         <h4></h4>
                     </div>
                     <div class="block__registr-input-box">
                         <h3>Придумайте логин</h3>
-                        <input type="text">
+                        <input type="text" name="login">
                         <h4></h4>
                     </div>
                     <div class="block__registr-input-box">
                         <h3>Введите email</h3>
-                        <input type="email">
+                        <input type="email" name="email">
                         <h4></h4>
                     </div>
                     <div class="block__registr-input-box">
                         <h3>Придумайте пароль</h3>
-                        <input type="password">
+                        <input type="password" name="password">
                         <h4></h4>
                     </div>
                     <div class="block__registr-input-box">
                         <h3>Повторите пароль</h3>
-                        <input type="password">
+                        <input type="password" name="password">
                         <h4></h4>
                     </div>
                 </div>
@@ -80,6 +87,10 @@
                 </div>
                 <div class="block__registr-submit-box">
                     <input type="submit" value="Зарегистрироваться">
+                </div>
+                <div class="block__link">
+                    <h3>Если уже зарегистрированы</h3>
+                    <h3 id="autorizationLink">Войдите</h3>
                 </div>
             </form>
         </div>
