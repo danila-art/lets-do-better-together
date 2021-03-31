@@ -5,6 +5,13 @@ function get_cookie(cookie_name) {
     else
         return null;
 }
+// const cookie = get_cookie('loginUser');
+// console.log(cookie);
+// if (get_cookie('loginUSer') != ''){
+//     alert('куки есть');
+// }else{
+//     alert('Куки нету!!!');
+// }
 const moduleAutoRegistr = document.getElementById('moduleAutoRegistr');
 const blockModuleRegistrInput = document.getElementById('moduleRegistr');
 const blockModuleAutorization = document.getElementById('moduleAutorization');
