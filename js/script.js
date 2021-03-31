@@ -55,6 +55,7 @@ function AutorizationCheck() {
     });
     if (/[a-z]/i.test(moduleAutorization[0].value) === false && moduleAutorization[0].value != '') {
         moduleAutorization[0].nextElementSibling.innerHTML = 'Только латинскими буквами';
+        errorAuto.push(false)
     }
     if (errorAuto.length === 0) {
         return true;

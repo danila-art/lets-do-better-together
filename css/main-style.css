@@ -82,7 +82,7 @@ h1, h2, h3, h4, p, span {
     text-align: center;
 }
 .header__user-auth img {
-    width: 70%;
+    width: 80%;
     height: auto;
 }
 .header__user-auth h4:hover{
