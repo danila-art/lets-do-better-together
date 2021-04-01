@@ -15,7 +15,7 @@ if ($row_count === 1) {
 		$login_user = $out_user['login'];
 	}
 	setcookie("loginUser", $login_user, time() + 3600, '/');
-	header('Location: ../index.php');
+	header('Location: ../page/user.php');
 }
 $linkToDataBase->close();
 

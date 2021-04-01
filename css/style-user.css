@@ -1,0 +1,46 @@
+.user__account-section {
+    display: block;
+    width: 90%;
+    height: auto;
+    margin: 2% auto;
+}
+
+.user__flex {
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.user__img {
+    display: block;
+    width: 40%;
+    height: auto;
+    padding: 2%;
+}
+
+.user__img img {
+    width: 100%;
+    height: auto;
+}
+
+.user__data {
+    display: block;
+    width: 100%;
+    height: auto;
+    padding: 2%;
+}
+
+.user__data-container {
+    display: block;
+    width: 80%;
+    height: auto;
+    margin: 0 auto;
+}
+
+.user__h2-center {
+    display: block;
+    width: 100%;
+    height: auto;
+    text-align: center;
+}
