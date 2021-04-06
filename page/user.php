@@ -11,7 +11,7 @@
 </head>
 
 <body>
-    <header class="header">
+    <header class="header__user-page">
         <div class="header__nav">
             <div class="header__flex container">
                 <div class="header__logo">
@@ -52,7 +52,6 @@
                     $linkToDataBase = mysqli_connect($host, $user, $password, $database);
                     $resultUser = $linkToDataBase->query("SELECT * FROM `user` WHERE `login` = '$login'");
                     $row_count = mysqli_num_rows($resultUser);
-                    echo $row_count;
                     if($row_count === 1){
                         while ($userData = mysqli_fetch_assoc($resultUser)) {
                             echo "    <div class=\"user__data-inner\">

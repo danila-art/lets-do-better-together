@@ -13,6 +13,7 @@ function get_cookie(cookie_name) {
 //     alert('Куки нету!!!');
 // }
 const moduleAutoRegistr = document.getElementById('moduleAutoRegistr');
+const moduleAplication = document.getElementById('moduleAplication');
 const blockModuleRegistrInput = document.getElementById('moduleRegistr');
 const blockModuleAutorization = document.getElementById('moduleAutorization');
 const moduleRegistrInput = document.getElementById('moduleRegistr').querySelectorAll('input');
@@ -36,8 +37,11 @@ autorizationLink.addEventListener('click', ()=>{
     blockModuleRegistrInput.style.display = 'none';
     blockModuleAutorization.style.display = 'block';
 })
-//Закрытие окна регистрации и авторизации
+//Закрытие окна регистрации и авторизации и модуля заявки
 function closeModule(element) {
+    if (getComputedStyle(moduleAplication).display == 'block') {
+        moduleAplication.style.display = 'none';
+    }
     moduleAutoRegistr.style.display = 'none';
     element.parentNode.style.display = 'none'
 }
