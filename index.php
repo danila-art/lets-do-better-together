@@ -18,6 +18,20 @@
 </head>
 
 <body>
+    <section class="error" id="sectionError">
+        <div class="error__aplication" id="errorAplication">
+            <div class="block__close-icon" onclick="closeModule(this)">
+                <img src="img/icons/cancel.png" alt="errorUpImage">
+            </div>
+            <div class="error__aplication-h1">
+                <h1>Просим прощения, но подать заявку могут только авторизированные пользователи.</h1>
+            </div>
+            <div class="error__aplication-button">
+                <h3>Авторизироваться</h3>
+            </div>
+        </div>
+
+    </section>
     <section class="module__aplication" id="moduleAplication">
         <div class="aplication">
             <div class="aplication__close-icon" onclick="closeModule(this)">
@@ -25,7 +39,7 @@
             </div>
             <div class="aplication__form">
                 <h1>Создание заявки</h1>
-                <form action="php/add-aplication.php" method="POST"  enctype="multipart/form-data">
+                <form action="php/add-aplication.php" method="POST" enctype="multipart/form-data">
                     <div class="aplication__name">
                         <h2>Название заявки</h2>
                         <input type="text" name="aplication__name">
@@ -147,7 +161,7 @@
                 </div>
                 <div class="header__flex header__flex-nav">
                     <h3><a href="index.php">Главная</a></h3>
-                    <h3><a href="#">Подать заявку</a></h3>
+                    <h3><a href="#" id="buttonOpenModuleAplication">Подать заявку</a></h3>
                     <h3><a href="#">Просмотреть заявки</a></h3>
                     <h3><a href="#about">О нас</a></h3>
                     <h3><a href="#">Контакты</a></h3>

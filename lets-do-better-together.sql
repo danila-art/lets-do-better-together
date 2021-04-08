@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.4
+-- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Мар 30 2021 г., 14:13
--- Версия сервера: 8.0.19
--- Версия PHP: 7.4.14
+-- Время создания: Апр 08 2021 г., 19:41
+-- Версия сервера: 10.3.22-MariaDB
+-- Версия PHP: 7.1.33
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,13 +24,32 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Структура таблицы `aplication`
+--
+
+CREATE TABLE `aplication` (
+  `id` int(11) NOT NULL,
+  `name` text NOT NULL,
+  `description` text NOT NULL,
+  `category` text NOT NULL,
+  `date` date NOT NULL,
+  `img-before-name` varchar(50) NOT NULL,
+  `img-before-tmp` mediumblob NOT NULL,
+  `img-after-name` varchar(50) DEFAULT NULL,
+  `img-after-tmp` mediumblob DEFAULT NULL,
+  `id_user` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
 -- Структура таблицы `user`
 --
 
 CREATE TABLE `user` (
-  `id` int NOT NULL,
+  `id` int(11) NOT NULL,
   `fio` varchar(255) NOT NULL,
-  `login` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `login` varchar(100) NOT NULL,
   `email` varchar(110) NOT NULL,
   `password` varchar(45) NOT NULL,
   `rank` varchar(10) NOT NULL
@@ -48,6 +67,12 @@ INSERT INTO `user` (`id`, `fio`, `login`, `email`, `password`, `rank`) VALUES
 --
 
 --
+-- Индексы таблицы `aplication`
+--
+ALTER TABLE `aplication`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Индексы таблицы `user`
 --
 ALTER TABLE `user`
@@ -58,10 +83,16 @@ ALTER TABLE `user`
 --
 
 --
+-- AUTO_INCREMENT для таблицы `aplication`
+--
+ALTER TABLE `aplication`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT для таблицы `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

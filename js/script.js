@@ -25,22 +25,38 @@ userBlock.addEventListener('click', () => {
         blockModuleAutorization.style.display = 'block';
     }
 })
+//Кнопка открытия модуля поЫдачи заявки
+const sectionError = document.getElementById('sectionError');
+const buttonOpenModuleAplication = document.getElementById('buttonOpenModuleAplication');
+buttonOpenModuleAplication.addEventListener('ckick', () => {
+    if (get_cookie('loginUser') == '') {
+
+    }
+    if (getComputedStyle(moduleAplication).display == 'none') {
+        moduleAplication.style.display = 'block';
+        moduleAplication.nextElementSibling.style.display = 'block';
+    }
+});
+
 //Перенаправление на модуль регистрация
 const registrLink = document.getElementById('registrLink');
-registrLink.addEventListener('click', ()=>{
+registrLink.addEventListener('click', () => {
     blockModuleRegistrInput.style.display = 'block';
     blockModuleAutorization.style.display = 'none';
 })
 // Перенаправление на модуль авторизация
 const autorizationLink = document.getElementById('autorizationLink');
-autorizationLink.addEventListener('click', ()=>{
+autorizationLink.addEventListener('click', () => {
     blockModuleRegistrInput.style.display = 'none';
     blockModuleAutorization.style.display = 'block';
 })
-//Закрытие окна регистрации и авторизации и модуля заявки
+//Закрытие окна регистрации и авторизации и модуля заявки и модуля error
 function closeModule(element) {
     if (getComputedStyle(moduleAplication).display == 'block') {
         moduleAplication.style.display = 'none';
+    }
+    if (getComputedStyle(sectionError).display == 'block') {
+        
     }
     moduleAutoRegistr.style.display = 'none';
     element.parentNode.style.display = 'none'

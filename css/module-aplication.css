@@ -1,5 +1,5 @@
 .module__aplication {
-    display: block;
+    display: none;
     background-color: rgba(0, 0, 0, 0.4);
     position: fixed;
     width: 100%;
@@ -7,7 +7,7 @@
 }
 
 .aplication {
-    display: block;
+    display: none;
     background-color: white;
     width: 40%;
     height: auto;
@@ -17,9 +17,11 @@
     z-index: 100;
     border-radius: 10px;
 }
-.aplication h1{
+
+.aplication h1 {
     text-align: center;
 }
+
 .aplication__close-icon {
     display: block;
     position: absolute;
@@ -29,10 +31,11 @@
     height: auto;
 }
 
-.aplication__close-icon img{
+.aplication__close-icon img {
     width: 100%;
     height: auto;
 }
+
 .aplication__form {
     display: block;
     width: 90%;
@@ -83,4 +86,65 @@
 .aplication__submit {
     display: block;
     padding: 1%;
+}
+
+/* module error */
+
+.error {
+    display: block;
+    position: fixed;
+    background-color: rgba(0, 0, 0, 0.3);
+    width: 100%;
+    height: 100vh;
+}
+
+.error__aplication {
+    display: block;
+    position: relative;
+    background-color: white;
+    width: 40%;
+    height: auto;
+    padding: 2%;
+    text-align: center;
+    margin: 10% auto;
+    border-radius: 10px;
+}
+
+.block__close-icon {
+    display: block;
+    position: absolute;
+    width: 10%;
+    height: 10%;
+    right: 2%;
+    top: 2%;
+}
+
+.block__close-icon img{
+    width: 100%;
+    height: auto;
+}
+.error__aplication-h1{
+    display: block;
+    width: 80%;
+    height: auto;
+    margin: 0 auto;
+}
+.error__aplication-button {
+    display: block;
+    width: 60%;
+    height: auto;
+    margin: 2% auto;    
+    padding: 1%;
+    text-align: center;
+    border: 2px solid #20e6fc;
+    transition: .5s ease-in-out;
+    cursor: pointer;
+    border-radius: 10px;
+}
+
+.error__aplication-button:hover {
+    background-color: #20e6fc;
+    transform: scale(1.1);
+    color: white;
+    transition: .5s ease-in-out;
 }
