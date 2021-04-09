@@ -48,12 +48,14 @@
                     </div>
                     <?php
                     $login = $_COOKIE['loginUser'];
+                    $id_user = '';
                     require_once '../php/connection.php';
                     $linkToDataBase = mysqli_connect($host, $user, $password, $database);
                     $resultUser = $linkToDataBase->query("SELECT * FROM `user` WHERE `login` = '$login'");
                     $row_count = mysqli_num_rows($resultUser);
-                    if($row_count === 1){
+                    if ($row_count === 1) {
                         while ($userData = mysqli_fetch_assoc($resultUser)) {
+                            $id_user = $userData['id'];
                             echo "    <div class=\"user__data-inner\">
                                     <div class=\"user__login\">
                                         <h2>Login:</h2>
@@ -74,6 +76,28 @@
                 </div>
             </div>
         </div>
+    </section>
+    <section class="my-aplication">
+        <div class="my-aplication__h1">
+            <h1>Мои заявки</h1>
+        </div>
+        <div class="my-aplication__flex">
+            <?php
+            $aplicationUser = $linkToDataBase->query("SELECT * FROM `aplication` WHERE `id_user` = '$id_user'");
+            if (mysqli_num_rows($aplicationUser) == 0) {
+            } else {
+                while ($resultAplication = mysqli_fetch_assoc($aplicationUser)) {
+                    $image_name = $resultAplication['img-before-name'];
+                    $image_content = base64_encode($resultAplication['img-before-tmp']);
+                    echo "<img src =\"data:image/jpeg;base64,$image_content\" alt = 'errorUpImage'>";
+                    // echo $resultAplication['name'] . '<br>';
+                    // echo $resultAplication['img-before-name'] . '<br>';
+                }
+            }
+
+            ?>
+        </div>
+
     </section>
     <script>
         const cookieToPhp = '<?php echo $_COOKIE['loginUser'] ?>'

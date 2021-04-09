@@ -26,14 +26,13 @@
             <div class="error__aplication-h1">
                 <h1>Просим прощения, но подать заявку могут только авторизированные пользователи.</h1>
             </div>
-            <div class="error__aplication-button">
+            <div class="error__aplication-button" id="openAutorization">
                 <h3>Авторизироваться</h3>
             </div>
         </div>
-
     </section>
     <section class="module__aplication" id="moduleAplication">
-        <div class="aplication">
+        <div class="aplication" id="moduleAplicationBlock">
             <div class="aplication__close-icon" onclick="closeModule(this)">
                 <img src="img/icons/cancel.png" alt="errorUpImage">
             </div>
@@ -57,6 +56,7 @@
                             <option value="Ремонт дорог">Ремонт дорог</option>
                             <option value="Ремонт детской площадки">Ремонт детской площадки</option>
                             <option value="Ремонт канализации">Ремонт канализации</option>
+                            <option value="Ремонт помещений">Ремонт помещений</option>
                             <option value="Другое">Другое</option>
                         </select>
                         <h4></h4>
@@ -212,9 +212,32 @@
             <div class="section-main-article__h1">
                 <h1>Последние 4 решеные проблемы</h1>
             </div>
+            <div class="section-main-article__flex">
+            <?php
+            // Доработать
+            ?>
+            </div>
         </div>
     </section>
     <script src="js/script.js"></script>
+    <script>
+        //Кнопка открытия модуля подачи заявки
+        const sectionError = document.getElementById('sectionError');
+        const buttonOpenModuleAplication = document.getElementById('buttonOpenModuleAplication');
+        const errorAplication = document.getElementById('errorAplication');
+        const moduleAplication = document.getElementById('moduleAplication');
+        const moduleAplicationBlock = document.getElementById('moduleAplicationBlock');
+        buttonOpenModuleAplication.addEventListener('click', () => {
+            let valueCookie = '<?php echo $_COOKIE['loginUser'] ?>';
+            if (valueCookie == '') {
+                sectionError.style.display = 'block';
+                errorAplication.style.display = 'block';
+            } else {
+                moduleAplication.style.display = 'block';
+                moduleAplicationBlock.style.display = 'block';
+            }
+        });
+    </script>
 </body>
 
 </html>

@@ -1,19 +1,5 @@
-function get_cookie(cookie_name) {
-    var results = document.cookie.match('(^|;) ?' + cookie_name + '=([^;]*)(;|$)');
-    if (results)
-        return (unescape(results[2]));
-    else
-        return null;
-}
-// const cookie = get_cookie('loginUser');
-// console.log(cookie);
-// if (get_cookie('loginUSer') != ''){
-//     alert('куки есть');
-// }else{
-//     alert('Куки нету!!!');
-// }
+
 const moduleAutoRegistr = document.getElementById('moduleAutoRegistr');
-const moduleAplication = document.getElementById('moduleAplication');
 const blockModuleRegistrInput = document.getElementById('moduleRegistr');
 const blockModuleAutorization = document.getElementById('moduleAutorization');
 const moduleRegistrInput = document.getElementById('moduleRegistr').querySelectorAll('input');
@@ -23,18 +9,6 @@ userBlock.addEventListener('click', () => {
     if (getComputedStyle(moduleAutoRegistr).display == 'none') { //если php куки разработы вставить в условие get_cookie('') != null
         moduleAutoRegistr.style.display = 'block';
         blockModuleAutorization.style.display = 'block';
-    }
-})
-//Кнопка открытия модуля поЫдачи заявки
-const sectionError = document.getElementById('sectionError');
-const buttonOpenModuleAplication = document.getElementById('buttonOpenModuleAplication');
-buttonOpenModuleAplication.addEventListener('ckick', () => {
-    if (get_cookie('loginUser') == '') {
-
-    }
-    if (getComputedStyle(moduleAplication).display == 'none') {
-        moduleAplication.style.display = 'block';
-        moduleAplication.nextElementSibling.style.display = 'block';
     }
 });
 
@@ -46,8 +20,15 @@ registrLink.addEventListener('click', () => {
 })
 // Перенаправление на модуль авторизация
 const autorizationLink = document.getElementById('autorizationLink');
+const openAutorization = document.getElementById('openAutorization');
 autorizationLink.addEventListener('click', () => {
     blockModuleRegistrInput.style.display = 'none';
+    blockModuleAutorization.style.display = 'block';
+})
+openAutorization.addEventListener('click', () => {
+    sectionError.style.display = 'none';
+    errorAplication.style.display = 'none';
+    moduleAutoRegistr.style.display = 'block';
     blockModuleAutorization.style.display = 'block';
 })
 //Закрытие окна регистрации и авторизации и модуля заявки и модуля error
@@ -56,7 +37,7 @@ function closeModule(element) {
         moduleAplication.style.display = 'none';
     }
     if (getComputedStyle(sectionError).display == 'block') {
-        
+        sectionError.style.display = 'none';
     }
     moduleAutoRegistr.style.display = 'none';
     element.parentNode.style.display = 'none'
