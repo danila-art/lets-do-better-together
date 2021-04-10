@@ -19,4 +19,4 @@ $id_user = $result['id'];
 }
 $linkToDataBase->query("INSERT INTO `aplication`(`name`, `description`, `category`, `date`, `img-before-name`, `img-before-tmp`, `id_user`, `status`) VALUES ('$aplication__name', '$aplication__description', '$aplication__category', '$date', '$aplication__img_before_name','$aplication__img_before_tmp', '$id_user', '$status')");
 $linkToDataBase->close();
-header('location ../');
+header('location: ../');
