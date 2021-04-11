@@ -213,9 +213,41 @@
                 <h1>Последние 4 решеные проблемы</h1>
             </div>
             <div class="section-main-article__flex">
-            <?php
-            // Доработать
-            ?>
+                <div class="my-aplication__flex">
+                    <?php
+                    require_once 'php/connection.php';
+                    $linkToDataBase = mysqli_connect($host, $user, $password, $database);
+                    $aplicationUser = $linkToDataBase->query("SELECT * FROM `aplication` WHERE `status` = '1'");
+                    if (mysqli_num_rows($aplicationUser) == 0) {
+                        echo "<h1 style =\"color: red; text-align: center;\">Пока не было решенных заявок</h1>";
+                    } else {
+                        while ($resultAplication = mysqli_fetch_assoc($aplicationUser)) {
+                            $image_name = $resultAplication['img-before-name'];
+                            $image_content = base64_encode($resultAplication['img-before-tmp']);
+                            // echo "<img src =\"data:image/jpeg;base64,$image_content\" alt = 'errorUpImage'>";
+                            echo "<div class=\"block-aplication\">
+                            <div class=\"block-aplication__inner-content\">
+                                <div class=\"block-aplication__h1\">
+                                    <h1>{$resultAplication['name']}</h1>
+                                 </div>
+                                <div class=\"block-aplication__img\">
+                                    <img src=\"data:image/jpeg;base64, $image_content\" alt=\"errorUpImage\">
+                                </div>
+                                <div class=\"block-aplication__description\">
+                                    <h2>Описание:</h2>
+                                    <h3>{$resultAplication['description']}</h3>
+                                </div>
+                                <div class=\"block-aplication__flex-category-date\">
+                                    <div class=\"block-aplication__category\">{$resultAplication['category']}</div>
+                                    <div class=\"block-aplication__date\">{$resultAplication['date']}</div>
+                                </div>
+                            </div>
+                        </div>";
+                        }
+                    }
+
+                    ?>
+                </div>
             </div>
         </div>
     </section>

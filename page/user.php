@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="../css/fontAndMedia.css">
     <link rel="stylesheet" href="../css/block-registr-autorization.css">
     <link rel="stylesheet" href="../css/style-user.css">
+    <link rel="stylesheet" href="../css/module-aplication.css">
 </head>
 
 <body>
@@ -84,14 +85,42 @@
         <div class="my-aplication__flex">
             <?php
             $aplicationUser = $linkToDataBase->query("SELECT * FROM `aplication` WHERE `id_user` = '$id_user'");
-            if (mysqli_num_rows($aplicationUser) == 0) {
+            if (mysqli_num_rows($aplicationUser) == 0)  {
             } else {
                 while ($resultAplication = mysqli_fetch_assoc($aplicationUser)) {
+                    $statusAplication = '';
+                    if($resultAplication['status'] == 0){
+                        $statusAplication = '<h3 style="color: orange">Ожидает модерацию</h3>';
+                    } else if ($resultAplication['status'] == 1) {
+                        $statusAplication = '<h3 style="colore: green">Заявка принята</h3>';
+                    } else if ($resultAplication['status'] == 2) {
+                        $statusAplication = '<h3 style="color: red">Заявка отклонена</h3>';
+                    }
                     $image_name = $resultAplication['img-before-name'];
                     $image_content = base64_encode($resultAplication['img-before-tmp']);
-                    echo "<img src =\"data:image/jpeg;base64,$image_content\" alt = 'errorUpImage'>";
-                    // echo $resultAplication['name'] . '<br>';
-                    // echo $resultAplication['img-before-name'] . '<br>';
+                    // echo "<img src =\"data:image/jpeg;base64,$image_content\" alt = 'errorUpImage'>";
+                    echo "<div class=\"block-aplication\">
+                            <div class=\"block-aplication__inner-content\">
+                                <div class=\"block-aplication__h1\">
+                                    <h1>{$resultAplication['name']}</h1>
+                                 </div>
+                                <div class=\"block-aplication__img\">
+                                    <img src=\"data:image/jpeg;base64, $image_content\" alt=\"errorUpImage\">
+                                </div>
+                                <div class=\"block-aplication__description\">
+                                    <h2>Описание:</h2>
+                                    <h3>{$resultAplication['description']}</h3>
+                                </div>
+                                <div class=\"block-aplication__status\">
+                                    <h3>Статус:</h3>
+                                    <h4>{$statusAplication}</h4>
+                                </div>
+                                <div class=\"block-aplication__flex-category-date\">
+                                    <div class=\"block-aplication__category\">{$resultAplication['category']}</div>
+                                    <div class=\"block-aplication__date\">{$resultAplication['date']}</div>
+                                </div>
+                            </div>
+                        </div>";
                 }
             }
 
