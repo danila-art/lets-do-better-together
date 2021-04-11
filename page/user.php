@@ -97,7 +97,6 @@
 
             ?>
         </div>
-
     </section>
     <script>
         const cookieToPhp = '<?php echo $_COOKIE['loginUser'] ?>'
