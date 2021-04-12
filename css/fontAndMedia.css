@@ -17,14 +17,17 @@
 
 h1 {
     font-family: 'CormoranSC-Bold', sans-serif;
+    font-weight: 700;
 }
 
 h2 {
     font-family: 'CormoranSC-Regular', sans-serif;
+    font-weight: 500;
 }
 
 h3, h4 {
     font-family: 'CormoranSC-Light', sans-serif;
+    font-weight: 500;
 }
 
 @media screen and (max-width: 1366px) {

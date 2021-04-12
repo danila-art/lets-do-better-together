@@ -13,6 +13,7 @@ $row_count = mysqli_num_rows($result);
 if ($row_count === 0){
 	$linkToDataBase->query("INSERT INTO `user` (`fio`, `login`, `email`, `password`, `rank`) VALUES ('$FIO', '$login', '$email', '$password', '$rank')");
 	$linkToDataBase->close();
+	header('Location: ../');
 }else{
 	echo 'Пользователь с таким логином и паролем уже существует';
 	//Продумать вывод информации об ошибки с уже сущетвующим пользователем.

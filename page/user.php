@@ -12,6 +12,20 @@
 </head>
 
 <body>
+    <section class="confirm-block" id="confirmBlock">
+        <div class="confirm-block__content">
+            <h1>Подтверждение удаления</h1>
+            <h2>Вы уверены что хотите удалить заявку?</h2>
+            <div class="confirm-block__flex">
+                <div class="confirm-block__confirm" id="confirmButtonYes">
+                    <h2>Да, удалить</h2>
+                </div>
+                <div class="confirm-block__cansel" id="confirmButtonNo">
+                    <h2>Отмена</h2>
+                </div>
+            </div>
+        </div>
+    </section>
     <header class="header__user-page">
         <div class="header__nav">
             <div class="header__flex container">
@@ -85,16 +99,23 @@
         <div class="my-aplication__flex">
             <?php
             $aplicationUser = $linkToDataBase->query("SELECT * FROM `aplication` WHERE `id_user` = '$id_user'");
-            if (mysqli_num_rows($aplicationUser) == 0)  {
+            if (mysqli_num_rows($aplicationUser) == 0) {
             } else {
                 while ($resultAplication = mysqli_fetch_assoc($aplicationUser)) {
                     $statusAplication = '';
-                    if($resultAplication['status'] == 0){
+                    if ($resultAplication['status'] == 0) {
                         $statusAplication = '<h3 style="color: orange">Ожидает модерацию</h3>';
                     } else if ($resultAplication['status'] == 1) {
                         $statusAplication = '<h3 style="colore: green">Заявка принята</h3>';
                     } else if ($resultAplication['status'] == 2) {
                         $statusAplication = '<h3 style="color: red">Заявка отклонена</h3>';
+                    }
+                    $form_delete = '';
+                    if ($resultAplication['status'] == 0) {
+                        $form_delete = "<form action=\"../php/delete-aplication.php\" method=\"POST\" class=\"formDelete\">
+                                            <input type=\"hidden\" name=\"id_aplication\" value=\"{$resultAplication['id']}\">
+                                            <input class =\"block-aplication__delete-button\" type=\"submit\" value=\"Удалить\">
+                                        </form>";
                     }
                     $image_name = $resultAplication['img-before-name'];
                     $image_content = base64_encode($resultAplication['img-before-tmp']);
@@ -114,6 +135,7 @@
                                 <div class=\"block-aplication__status\">
                                     <h3>Статус:</h3>
                                     <h4>{$statusAplication}</h4>
+                                    $form_delete
                                 </div>
                                 <div class=\"block-aplication__flex-category-date\">
                                     <div class=\"block-aplication__category\">{$resultAplication['category']}</div>
@@ -127,6 +149,7 @@
             ?>
         </div>
     </section>
+    <script src="../js/userScript.js"></script>
     <script>
         const cookieToPhp = '<?php echo $_COOKIE['loginUser'] ?>'
         if (cookieToPhp == '') {

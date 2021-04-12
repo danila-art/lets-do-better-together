@@ -1,0 +1,179 @@
+.out-aplication {
+    display: block;
+    position: relative;
+    width: 100%;
+    height: auto;
+}
+
+.out-aplication__h1 {
+    display: block;
+    text-align: center;
+    padding-top: 1%;
+    padding-bottom: 1%;
+}
+
+.out-aplication__main {
+    display: block;
+    background-image: url('../img/background/alexandru-acea-Ra8x8H7GToE-unsplash.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-blend-mode: multiply;
+    background-color: rgba(0, 0, 0, 0.2);
+    width: 100%;
+    height: 100vh;
+}
+
+.block-aplication__flex-button {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-around;
+    width: 80%;
+    height: auto;
+    padding: 1%;
+    margin: 1% auto;
+}
+
+.block-aplication__button-complete {
+    display: block;
+    width: auto;
+    height: auto;
+    color: green;
+    cursor: pointer;
+}
+
+.block-aplication__button-cansel {
+    display: block;
+    width: auto;
+    height: auto;
+    color: red;
+    cursor: pointer;
+}
+
+/* section form-complete-cansel */
+
+.form-complete-cansel {
+    display: none;
+    background-color: rgba(0, 0, 0, 0.3);
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    z-index: 100;
+}
+
+.form-complete-cansel__complete {
+    display: none;
+    background-color: white;
+    width: 60%;
+    height: auto;
+    padding: 2%;
+    border: 1px solid black;
+    border-radius: 10px;
+    margin: 10% auto;
+    z-index: 200;
+}
+
+.form-complete-cansel__complete input[type=file] {
+    display: block;
+    width: 30%;
+    height: auto;
+    padding: 2%;
+    text-align: center;
+    margin: 0 auto;
+}
+
+.form-complete-cansel__h1 {
+    display: block;
+    width: 100%;
+    height: auto;
+    padding-top: 1%;
+    padding-bottom: 1%;
+    text-align: center;
+}
+
+.form-complete-cansel__h2 {
+    display: block;
+    width: 100%;
+    height: auto;
+    padding-top: 1%;
+    padding-bottom: 1%;
+    text-align: center;
+}
+
+.form-complete-cansel__complete-flex {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-around;
+    margin-top: 2%;
+}
+
+.form-complete-cansel__complete-button {
+    display: block;
+    width: auto;
+    height: auto;
+}
+
+.form-complete-cansel__complete-button input {
+    background-color: white;
+    outline: none;
+    border: 1px solid black;
+    padding: 10% 20% 10% 20%;
+    cursor: pointer;
+    color: green;
+    border-radius: 10px;
+    transition: .5s ease-in-out;
+}
+
+.form-complete-cansel__complete-button input:hover {
+    transform: scale(1.1);
+    transition: .5s ease-in-out;
+}
+
+.form-complete-cansel__cansel-button {
+    display: block;
+    width: auto;
+    height: auto;
+    text-align: center;
+    color: red;
+    cursor: pointer;
+}
+
+.form-complete-cansel__cansel {
+    display: none;
+    background-color: white;
+    width: 60%;
+    height: auto;
+    padding: 2%;
+    border: 1px solid black;
+    border-radius: 10px;
+    margin: 10% auto;
+    z-index: 200;
+}
+
+.form-complete-cansel__cansel-flex {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-around;
+    margin-top: 2%;
+}
+
+.form-complete-cansel__cansel-form {
+    display: block;
+    width: auto;
+    height: auto;
+}
+
+.form-complete-cansel__cansel-form input {
+    background-color: white;
+    outline: none;
+    border: 1px solid black;
+    padding: 10% 20% 10% 20%;
+    cursor: pointer;
+    color: green;
+    border-radius: 10px;
+    transition: .5s ease-in-out;
+}
+
+.form-complete-cansel__cansel-form input:hover {
+    transform: scale(1.1);
+    transition: .5s ease-in-out;
+}

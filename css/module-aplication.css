@@ -48,7 +48,9 @@
     height: auto;
     margin: 0 auto;
 }
-
+.aplication__form h4{
+    color: red;
+}
 .aplication__form h2 {
     padding: 1%;
 }
@@ -161,8 +163,6 @@
 
 .my-aplication {
     display: block;
-    background-color: rgba(0, 0, 0, 0.2);
-    /* background-image: url(); порабоать над фоном*/
     width: 100%;
     height: auto;
     margin: 0 auto;
@@ -178,10 +178,16 @@
 
 .my-aplication__flex {
     display: flex;
+    background-image: url('../img/background/alexandru-acea-Ra8x8H7GToE-unsplash.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-blend-mode: multiply;
+    background-color: rgba(0, 0, 0, 0.2);
     flex-wrap: wrap;
     justify-content: space-around;
     padding-top: 2%;
     padding-bottom: 2%;
+    height: auto;
 }
 
 .block-aplication {
@@ -260,4 +266,24 @@
     width: 30%;
     height: auto;
     text-align: right;
+}
+
+.block-aplication__delete-button {
+    display: block;
+    background-color: white;
+    outline: none;
+    border: 1px solid black;
+    padding: 2%;
+    border-radius: 10px;
+    width: 60%;
+    height: auto;
+    color: red;
+    cursor: pointer;
+    margin: 2% auto;
+    transition: .5s ease-in-out;
+}
+
+.block-aplication__delete-button:hover {
+    transform: scale(1.1);
+    transition: .5s ease-in-out;
 }

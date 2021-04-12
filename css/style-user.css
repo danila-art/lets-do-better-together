@@ -1,8 +1,15 @@
 .user__account-section {
     display: block;
+    background-image: url('../img/background/user-data-background.jpg');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    background-blend-mode: multiply;
+    background-color: rgba(255, 255, 255, 0.7);
     width: 90%;
+    padding-left: 5%;
+    padding-right: 5%;
     height: auto;
-    margin: 2% auto;
+    box-shadow: 1px 1px 10px 1px rgba(0, 0, 0, 0.3);
 }
 
 .user__flex {
@@ -50,7 +57,63 @@
     padding: 2%;
 }
 
-.user__login h3, .user__FIO h3, .user__email h3{
- display: block;
- margin-left: 2%;
+.user__login h3, .user__FIO h3, .user__email h3 {
+    display: block;
+    margin-left: 2%;
+}
+
+/* user -> confirm delete aplication */
+
+.confirm-block {
+    display: none;
+    background-color: rgba(0, 0, 0, 0.3);
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+}
+
+.confirm-block__content {
+    display: block;
+    background-color: white;
+    position: relative;
+    width: 60%;
+    height: auto;
+    padding: 4%;
+    margin: 10% auto;
+    border: 1px solid black;
+    border-radius: 10px;
+    z-index: 100;
+}
+
+.confirm-block__content h1 {
+    text-align: center;
+}
+
+.confirm-block__content h2 {
+    text-align: center;
+    padding-top: 1%;
+    padding-bottom: 1%;
+}
+
+.confirm-block__flex {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-around;
+    margin-top: 2%;
+}
+
+.confirm-block__confirm {
+    display: block;
+    width: auto;
+    height: auto;
+    color: green;
+    cursor: pointer;
+}
+
+.confirm-block__cansel {
+    display: block;
+    width: auto;
+    height: auto;
+    color: red;
+    cursor: pointer;
 }

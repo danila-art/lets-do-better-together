@@ -38,20 +38,20 @@
             </div>
             <div class="aplication__form">
                 <h1>Создание заявки</h1>
-                <form action="php/add-aplication.php" method="POST" enctype="multipart/form-data">
+                <form action="php/add-aplication.php" method="POST" enctype="multipart/form-data" onsubmit="return aplicationCheck()">
                     <div class="aplication__name">
                         <h2>Название заявки</h2>
-                        <input type="text" name="aplication__name">
+                        <input type="text" name="aplication__name" id="aplication__name">
                         <h4></h4>
                     </div>
                     <div class="aplication__description">
                         <h2>Описание</h2>
-                        <input type="text" name="aplication__description">
+                        <input type="text" name="aplication__description" id="aplication__description">
                         <h4></h4>
                     </div>
                     <div class="aplication__category">
                         <h2>Выберите категорию</h2>
-                        <select name="aplication__category">
+                        <select name="aplication__category" id="aplication__category">
                             <option selected disabled>Выбрать категорию</option>
                             <option value="Ремонт дорог">Ремонт дорог</option>
                             <option value="Ремонт детской площадки">Ремонт детской площадки</option>
@@ -63,7 +63,7 @@
                     </div>
                     <div class="aplication__img_before">
                         <h2>Загрузите изображение</h2>
-                        <input type="file" name="aplication__img_before">
+                        <input type="file" name="aplication__img_before" id="aplication__img_before">
                         <h4></h4>
                     </div>
                     <div class="aplication__submit">
@@ -167,16 +167,21 @@
                     <h3><a href="#">Контакты</a></h3>
                 </div>
                 <?php
-                if ($_COOKIE['loginUser']) {
+                if ($_COOKIE['loginUser'] && $_COOKIE['loginUser'] != 'admin') {
                     echo "<div class=\"header__user-auth\">
                      <a href=\"page/user.php\"><img src=\"img/icons/user-auth.png\" alt=\"errorUpImage\"></a>
+                    <h2>{$_COOKIE['loginUser']}</h2>
+                    <h4><a href='php/exitUser.php'>Выйти</a></h4>
+                </div>";
+                } else if ($_COOKIE['loginUser'] == 'admin') {
+                    echo "<div class=\"header__user-auth\">
+                     <a href=\"page/admin.php\"><img src=\"img/icons/admin.png\" alt=\"errorUpImage\"></a>
                     <h2>{$_COOKIE['loginUser']}</h2>
                     <h4><a href='php/exitUser.php'>Выйти</a></h4>
                 </div>";
                 } else {
                     echo "<div class=\"header__user\" id=\"userBlock\">
                    <img src=\"img/icons/user.png\" alt=\"errorUpImage\">
-                    <!--            Доработать php-->
                     <h3>Войти</h3>
                 </div>";
                 }
@@ -208,24 +213,23 @@
         </div>
     </section>
     <section class="section-main-article">
-        <div class="container">
-            <div class="section-main-article__h1">
-                <h1>Последние 4 решеные проблемы</h1>
-            </div>
-            <div class="section-main-article__flex">
-                <div class="my-aplication__flex">
-                    <?php
-                    require_once 'php/connection.php';
-                    $linkToDataBase = mysqli_connect($host, $user, $password, $database);
-                    $aplicationUser = $linkToDataBase->query("SELECT * FROM `aplication` WHERE `status` = '1'");
-                    if (mysqli_num_rows($aplicationUser) == 0) {
-                        echo "<h1 style =\"color: red; text-align: center;\">Пока не было решенных заявок</h1>";
-                    } else {
-                        while ($resultAplication = mysqli_fetch_assoc($aplicationUser)) {
-                            $image_name = $resultAplication['img-before-name'];
-                            $image_content = base64_encode($resultAplication['img-before-tmp']);
-                            // echo "<img src =\"data:image/jpeg;base64,$image_content\" alt = 'errorUpImage'>";
-                            echo "<div class=\"block-aplication\">
+        <div class="section-main-article__h1">
+            <h1>Последние 4 решеные проблемы</h1>
+        </div>
+        <div class="section-main-article__flex">
+            <div class="my-aplication__flex">
+                <?php
+                require_once 'php/connection.php';
+                $linkToDataBase = mysqli_connect($host, $user, $password, $database);
+                $aplicationUser = $linkToDataBase->query("SELECT * FROM `aplication` WHERE `status` = '1'");
+                if (mysqli_num_rows($aplicationUser) == 0) {
+                    echo "<h1 style =\"color: red; text-align: center;\">Пока не было решенных заявок</h1>";
+                } else {
+                    while ($resultAplication = mysqli_fetch_assoc($aplicationUser)) {
+                        $image_name = $resultAplication['img-before-name'];
+                        $image_content = base64_encode($resultAplication['img-before-tmp']);
+                        // echo "<img src =\"data:image/jpeg;base64,$image_content\" alt = 'errorUpImage'>";
+                        echo "<div class=\"block-aplication\">
                             <div class=\"block-aplication__inner-content\">
                                 <div class=\"block-aplication__h1\">
                                     <h1>{$resultAplication['name']}</h1>
@@ -243,11 +247,10 @@
                                 </div>
                             </div>
                         </div>";
-                        }
                     }
+                }
 
-                    ?>
-                </div>
+                ?>
             </div>
         </div>
     </section>

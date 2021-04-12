@@ -1,4 +1,3 @@
-
 const moduleAutoRegistr = document.getElementById('moduleAutoRegistr');
 const blockModuleRegistrInput = document.getElementById('moduleRegistr');
 const blockModuleAutorization = document.getElementById('moduleAutorization');
@@ -96,4 +95,46 @@ function registrCheck() {
         return false;
     }
     console.log(errorReg);
+}
+function aplicationCheck() {
+    let errorFalse = [];
+    const aplication__name = document.getElementById('aplication__name');
+    const aplication__description = document.getElementById('aplication__description');
+    const aplication__category = document.getElementById('aplication__category');
+    const aplication__img_before = document.getElementById('aplication__img_before');
+    const aplication__img_beforeFile = aplication__img_before.files[0];
+    console.log(aplication__img_beforeFile);
+    if (aplication__name.value == '') {
+        aplication__name.nextElementSibling.innerHTML = 'Поле пусто';
+        errorFalse.push('Поле aplication__name пусто');
+    } else {
+        aplication__name.nextElementSibling.innerHTML = '';
+    }
+    if (aplication__description.value == '') {
+        aplication__description.nextElementSibling.innerHTML = 'Поле пусто';
+        errorFalse.push('Поле aplication__description пусто');
+    } else {
+        aplication__description.nextElementSibling.innerHTML = '';
+    }
+    if (aplication__category.value == 'Выбрать категорию') {
+        aplication__category.nextElementSibling.innerHTML = 'Категория не выбрана';
+        errorFalse.push('Категория не выбрана');
+    } else {
+        aplication__category.nextElementSibling.innerHTML = '';
+    }
+    if (aplication__img_before.value == '') {
+        aplication__img_before.nextElementSibling.innerHTML = 'Изображение не выбрано';
+        errorFalse.push('Изображение не выбрано');
+    } else if (aplication__img_beforeFile.type == 'image/jpeg' || aplication__img_beforeFile.type == 'image/png' || aplication__img_beforeFile.type == 'image/jpg') {
+        aplication__img_before.nextElementSibling.innerHTML = '';
+    } else {
+        errorFalse.push('Тип файла не является png или jpeg');
+        aplication__img_before.nextElementSibling.innerHTML = 'Тип файла не является png или jpeg';
+    }
+    if (errorFalse.length == 0) {
+        return true;
+    } else {
+        return false;
+    }
+
 }
