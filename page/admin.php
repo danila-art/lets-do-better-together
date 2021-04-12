@@ -24,9 +24,10 @@
             <div class="form-complete-cansel__h2">
                 <h2>Загрузите изображение выполненной заявки</h2>
             </div>
-            <form action="" method="POST" onsubmit="" enctype="multipart/form-data">
-                <input type="hidden" name="id_aplication" id="inValueIdAplication">
-                <input type="file" name="aplication_img_after">
+            <form action="../php/adminQueryComplete.php" method="POST" onsubmit="return checkImage()" enctype="multipart/form-data">
+                <input type="hidden" name="id_aplication" id="inValueIdAplicationComplete" value="">
+                <input type="file" name="aplication_img_after" id="inputFile">
+                <h4 class="file-error" id="fileError"></h4>
                 <div class="form-complete-cansel__complete-flex">
                     <div class="form-complete-cansel__complete-button">
                         <input type="submit" value="Принять заявку">
@@ -44,7 +45,7 @@
             <div class="form-complete-cansel__cansel-flex">
                 <div class="form-complete-cansel__cansel-form">
                     <form action="../php/adminQueryCansel.php" method="POST" onsubmit="">
-                        <input type="hidden" name="id_aplication" value="">
+                        <input type="hidden" name="id_aplication" id="inValueIdAplicationCansel" value="">
                         <input type="submit" value="Да, отклонить">
                     </form>
                 </div>
@@ -132,20 +133,46 @@
                     $linkToDataBase = mysqli_connect($host, $user, $password, $database);
                     $aplicationUser = $linkToDataBase->query("SELECT * FROM `aplication`");
                     if (mysqli_num_rows($aplicationUser) == 0) {
-                        echo "<h1 style =\"color: red; text-align: center;\">Пока не было решенных заявок</h1>";
+                        echo "<h1 style =\"color: red; text-align: center;\">Странно, но заявок от пользователей не приходило</h1>";
                     } else {
                         while ($resultAplication = mysqli_fetch_assoc($aplicationUser)) {
                             $statusAplication = '';
                             if ($resultAplication['status'] == 0) {
                                 $statusAplication = '<h3 style="color: orange">Ожидает модерацию</h3>';
                             } else if ($resultAplication['status'] == 1) {
-                                $statusAplication = '<h3 style="colore: green">Заявка принята</h3>';
+                                $statusAplication = '<h3 style="color: green">Заявка принята</h3>';
                             } else if ($resultAplication['status'] == 2) {
                                 $statusAplication = '<h3 style="color: red">Заявка отклонена</h3>';
                             }
                             $id_aplication = $resultAplication['id'];
+                            $flex_button = '';
+                            //if staus 0 = Ожидает модерации
+                            //if staus 1 = Заявка принята
+                            //if staus 2 = Заявка отклонена
+                            if ($resultAplication['status'] == 0) {
+                                $flex_button = "<div class = \"block-aplication__flex-button\">
+                                                    <div class = \"block-aplication__button-complete adminBtnComplete\" >
+                                                        <h2>Принять</h2>
+                                                    </div>
+                                                    <input type=\"hidden\" value=\"{$id_aplication}\">
+                                                    <div class = \"block-aplication__button-cansel adminBtnCansel\" >
+                                                        <h2>Отклонить</h2>
+                                                    </div>
+                                                    <input type=\"hidden\" value=\"{$id_aplication}\">
+                                                </div>";
+                            } else if ($resultAplication['status'] == 2) {
+                                $flex_button = '';
+                            } else if ($resultAplication['status'] == 1) {
+                                $flex_button = '';
+                            }
                             $image_name = $resultAplication['img-before-name'];
                             $image_content = base64_encode($resultAplication['img-before-tmp']);
+                            $second_image = '';
+                            if ($resultAplication['status'] == 1) {
+                                $image_after_name = $resultAplication['img-after-name'];
+                                $image_after_content = base64_encode($resultAplication['img-after-tmp']);
+                                $second_image = "<img src=\"data:image/jpeg;base64, $image_after_content\" alt=\"errorUpImage\" class = \"block__inner-img\">";
+                            }
                             // echo "<img src =\"data:image/jpeg;base64,$image_content\" alt = 'errorUpImage'>";
                             echo "<div class=\"block-aplication\">
                             <div class=\"block-aplication__inner-content\">
@@ -153,7 +180,8 @@
                                     <h1>{$resultAplication['name']}</h1>
                                  </div>
                                 <div class=\"block-aplication__img\">
-                                    <img src=\"data:image/jpeg;base64, $image_content\" alt=\"errorUpImage\">
+                                    <img src=\"data:image/jpeg;base64, $image_content\" alt=\"errorUpImage\" class = \"block__inner-img\">
+                                    $second_image
                                 </div>
                                 <div class=\"block-aplication__description\">
                                     <h2>Описание:</h2>
@@ -163,14 +191,7 @@
                                     <h3>Статус:</h3>
                                     <h4>{$statusAplication}</h4>
                                 </div>
-                                <div class = \"block-aplication__flex-button\">
-                                    <div class = \"block-aplication__button-complete adminBtnComplete\" >
-                                        <h2>Принять</h2>
-                                    </div>
-                                    <div class = \"block-aplication__button-cansel adminBtnCansel\" >
-                                        <h2>Отклонить</h2>
-                                    </div>
-                                </div>
+                                $flex_button
                                 <div class=\"block-aplication__flex-category-date\">
                                     <div class=\"block-aplication__category\">{$resultAplication['category']}</div>
                                     <div class=\"block-aplication__date\">{$resultAplication['date']}</div>
@@ -192,19 +213,39 @@
         }
     </script>
     <script>
-        // Кнопки на блоке заявкие
+            // script img collection
+            const blockAplication = document.querySelectorAll('.block-aplication');
+            blockAplication.forEach((element) => {
+                let blockImg = element.querySelectorAll('.block__inner-img');
+                if (blockImg.length == 2) {
+                    blockImg[1].style.display = 'none';
+                    blockImg[0].addEventListener('mouseover', () => {
+                        blockImg[0].style.display = 'none';
+                        blockImg[1].style.display = 'block';
+                    })
+                    blockImg[1].addEventListener('mouseout', () => {
+                        blockImg[1].style.display = 'none';
+                        blockImg[0].style.display = 'block';
+                    })
+                }
+            });
+        // Кнопки на блоке заявки
         const adminBtnComplete = document.querySelectorAll('.adminBtnComplete');
         const adminBtnCansel = document.querySelectorAll('.adminBtnCansel');
         adminBtnComplete.forEach((element) => {
             element.addEventListener('click', () => {
                 formBody.style.display = 'block';
                 formComplete.style.display = 'block';
+                const idAplication = element.nextElementSibling.value;
+                document.getElementById('inValueIdAplicationComplete').value = idAplication;
             });
         });
         adminBtnCansel.forEach((element) => {
             element.addEventListener('click', () => {
                 formBody.style.display = 'block';
                 formCansel.style.display = 'block';
+                const idAplication = element.nextElementSibling.value;
+                document.getElementById('inValueIdAplicationCansel').value = idAplication;
             });
         })
         //блоки формы после нажатия кнопок
@@ -221,6 +262,22 @@
             formBody.style.display = 'none';
             formCansel.style.display = 'none';
         });
+
+        function checkImage() {
+            const imageInput = document.getElementById('inputFile');
+            const imageFile = document.getElementById('inputFile').files[0];
+            if (imageInput.value == '') {
+                document.getElementById('fileError').innerHTML = 'Поле пусто';
+                return false;
+            } else if (imageFile.type == 'image/jpeg' || imageFile.type == 'image/png') {
+                document.getElementById('fileError').innerHTML = '';
+                return true;
+            } else {
+                document.getElementById('fileError').innerHTML = 'Тип файла не приемлем'
+                return false;
+            }
+
+        }
     </script>
 </body>
 

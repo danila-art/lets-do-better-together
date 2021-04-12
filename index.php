@@ -221,13 +221,19 @@
                 <?php
                 require_once 'php/connection.php';
                 $linkToDataBase = mysqli_connect($host, $user, $password, $database);
-                $aplicationUser = $linkToDataBase->query("SELECT * FROM `aplication` WHERE `status` = '1'");
+                $aplicationUser = $linkToDataBase->query("SELECT * FROM `aplication` WHERE `status` = '1' LIMIT 4");
                 if (mysqli_num_rows($aplicationUser) == 0) {
                     echo "<h1 style =\"color: red; text-align: center;\">Пока не было решенных заявок</h1>";
                 } else {
                     while ($resultAplication = mysqli_fetch_assoc($aplicationUser)) {
                         $image_name = $resultAplication['img-before-name'];
                         $image_content = base64_encode($resultAplication['img-before-tmp']);
+                        $second_image = '';
+                        if ($resultAplication['status'] == 1) {
+                            $image_after_name = $resultAplication['img-after-name'];
+                            $image_after_content = base64_encode($resultAplication['img-after-tmp']);
+                            $second_image = "<img src=\"data:image/jpeg;base64, $image_after_content\" alt=\"errorUpImage\" class = \"block__inner-img\">";
+                        }
                         // echo "<img src =\"data:image/jpeg;base64,$image_content\" alt = 'errorUpImage'>";
                         echo "<div class=\"block-aplication\">
                             <div class=\"block-aplication__inner-content\">
@@ -235,7 +241,8 @@
                                     <h1>{$resultAplication['name']}</h1>
                                  </div>
                                 <div class=\"block-aplication__img\">
-                                    <img src=\"data:image/jpeg;base64, $image_content\" alt=\"errorUpImage\">
+                                    <img src=\"data:image/jpeg;base64, $image_content\" alt=\"errorUpImage\" class = \"block__inner-img\">
+                                    $second_image
                                 </div>
                                 <div class=\"block-aplication__description\">
                                     <h2>Описание:</h2>
@@ -256,6 +263,22 @@
     </section>
     <script src="js/script.js"></script>
     <script>
+        // script img collection
+        const blockAplication = document.querySelectorAll('.block-aplication');
+        blockAplication.forEach((element) => {
+            let blockImg = element.querySelectorAll('.block__inner-img');
+            if (blockImg.length == 2) {
+                blockImg[1].style.display = 'none';
+                blockImg[0].addEventListener('mouseover', () => {
+                    blockImg[0].style.display = 'none';
+                    blockImg[1].style.display = 'block';
+                })
+                blockImg[1].addEventListener('mouseout', () => {
+                    blockImg[1].style.display = 'none';
+                    blockImg[0].style.display = 'block';
+                })
+            }
+        });
         //Кнопка открытия модуля подачи заявки
         const sectionError = document.getElementById('sectionError');
         const buttonOpenModuleAplication = document.getElementById('buttonOpenModuleAplication');
