@@ -243,6 +243,14 @@
     height: auto;
 }
 
+.admin-aplication__flex {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-around;
+    padding-bottom: 2%;
+}
+
 .block-aplication {
     display: block;
     background-color: white;
@@ -340,4 +348,33 @@
 .block-aplication__delete-button:hover {
     transform: scale(1.1);
     transition: .5s ease-in-out;
+}
+
+/* filter aplication */
+
+.out-aplication__filter {
+    display: block;
+    padding-top: 2%;
+    padding-left: 2%;
+}
+
+.out-aplication__filter select {
+    display: inline-block;
+    padding: 1%;
+    outline: none;
+    border: 1px solid rgba(100, 100, 100, 0.6);
+    width: 20%;
+}
+
+.out-aplication__filter input[type=submit] {
+    display: inline-block;
+    background-color: white;
+    outline: none;
+    border: 2px solid #20e6fc;
+    padding: 1%;
+    width: 15%;
+    border-radius: 25px;
+    transition: .3s ease-in-out;
+    cursor: pointer;
+    margin-left: 2%;
 }

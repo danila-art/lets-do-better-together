@@ -42,3 +42,148 @@ h3, h4 {
         margin-top: 1%;
     }
 }
+
+@media screen and (max-width: 720px) {
+    /* Шрифты */
+    h1 {
+        font-size: 26px;
+    }
+    h2 {
+        font-size: 22px;
+    }
+    h3, h4 {
+        font-size: 22px;
+    }
+    input[type=submit] {
+        font-size: 22px;
+    }
+    input[type=text] {
+        font-size: 20px;
+    }
+    /* Шапка сайта */
+    .header__flex {
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: column;
+        justify-content: center;
+        padding-bottom: 2%;
+    }
+    .header__flex-nav {
+        width: 100%;
+        flex-direction: row !important;
+        padding-top: 2%;
+        padding-bottom: 2%;
+    }
+    .header__logo {
+        display: block;
+        margin: auto 0;
+        padding: 1%;
+        width: 20%;
+        margin: 0 auto;
+        text-align: center;
+    }
+    .header__user {
+        width: 20%;
+        height: auto;
+        margin: 0 auto;
+        padding: 0;
+    }
+    .header__user-auth {
+        width: 20%;
+        height: auto;
+        margin: 0 auto;
+        padding: 0;
+    }
+    /* Блок about */
+    .about {
+        height: 50vh;
+    }
+    .about__box h2 {
+        height: 50px !important;
+        vertical-align: middle !important;
+    }
+    /* Блоки авторизации и регистрации */
+    .block__autorization {
+        width: 80% !important;
+        height: auto;
+    }
+    .block__registr {
+        width: 80% !important;
+        height: auto;
+        margin: 5% auto !important;
+    }
+    /* error__aplication */
+    .error__aplication {
+        width: 90%;
+        height: auto;
+        margin-top: 20%;
+    }
+    /* Модульный блок добавление заявки */
+    .aplication {
+        width: 80%;
+        height: auto;
+        margin-top: 10%;
+    }
+    .aplication__form h2 {
+        font-size: 28px;
+    }
+    .aplication__form input[type=text] {
+        padding: 2%;
+        font-size: 20px;
+    }
+    .aplication__form select {
+        padding: 2%;
+        font-size: 20px;
+    }
+    .aplication__form input[type=file] {
+        width: 80%;
+        font-size: 20px;
+    }
+    /* Блок с заявкой */
+    .block-aplication {
+        width: 80% !important;
+        height: auto !important;
+        padding-bottom: 4% !important;
+    }
+    .block-aplication h1 {
+        font-size: 34px !important;
+    }
+    .block-aplication h2 {
+        font-size: 30px !important;
+    }
+    .block-aplication h3, .block-aplication h4 {
+        font-size: 28px !important;
+    }
+    .block-aplication__category {
+        font-size: 24px !important;
+    }
+    .block-aplication__date {
+        font-size: 24px !important;
+    }
+    /* filter */
+    .out-aplication__filter {
+        display: block;
+        padding-top: 2%;
+        padding-left: 2%;
+    }
+    .out-aplication__filter select {
+        display: inline-block;
+        width: 30%;
+    }
+    .out-aplication__filter input[type=submit] {
+        width: 25%;
+        height: auto;
+        padding: 2%;
+    }
+    /* form-complete */
+    .form-complete-cansel__complete {
+        width: 80%;
+        height: auto;
+        margin-top: 10%;
+    }
+    .form-complete-cansel__complete input[type=file] {
+        width: 70%;
+        height: auto;
+        font-size: 20px;
+    }
+}

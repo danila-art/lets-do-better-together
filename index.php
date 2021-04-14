@@ -12,9 +12,9 @@
     <title>Сделаем лучше вместе!</title>
     <link rel="stylesheet" href="css/main-style.css">
     <link rel="shortcut icon" href="logo/logo.png">
-    <link rel="stylesheet" href="css/fontAndMedia.css">
     <link rel="stylesheet" href="css/block-registr-autorization.css">
     <link rel="stylesheet" href="css/module-aplication.css">
+    <link media="screen" rel="stylesheet" href="css/fontAndMedia.css">
 </head>
 
 <body>

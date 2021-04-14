@@ -7,7 +7,7 @@ $linkToDataBase = mysqli_connect($host, $user, $password, $database);
 $login = $_POST['login'];
 $password = $_POST['password'];
 $password = md5($password);
-$result = $linkToDataBase->query("SELECT * FROM `user` WHERE '$login' = `login`");
+$result = $linkToDataBase->query("SELECT * FROM `user` WHERE '$login' = `login` and `password` = '$password'");
 $row_count = mysqli_num_rows($result);
 $login_user = '';
 $rank_user = '';

@@ -8,11 +8,11 @@
     <title>Admin Panel</title>
     <link rel="stylesheet" href="../css/main-style.css">
     <link rel="shortcut icon" href="../logo/logo.png">
-    <link rel="stylesheet" href="../css/fontAndMedia.css">
     <link rel="stylesheet" href="../css/block-registr-autorization.css">
     <link rel="stylesheet" href="../css/style-user.css">
     <link rel="stylesheet" href="../css/module-aplication.css">
     <link rel="stylesheet" href="../css/admin-style.css">
+    <link rel="stylesheet" href="../css/fontAndMedia.css">
 </head>
 
 <body>
@@ -137,8 +137,23 @@
             <h1>Вывод заявок пользователей</h1>
         </div>
         <div class="out-aplication__main">
+            <!-- filter js -->
+            <div class="out-aplication__filter">
+                <form action="" id="formFilter">
+                    <select name="aplication__category" id="filter__category">
+                        <option selected disabled>Фильтр по категориям</option>
+                        <option value="Показать все">Показать все</option>
+                        <option value="Ремонт дорог">Ремонт дорог</option>
+                        <option value="Ремонт детской площадки">Ремонт детской площадки</option>
+                        <option value="Ремонт канализации">Ремонт канализации</option>
+                        <option value="Ремонт помещений">Ремонт помещений</option>
+                        <option value="Другое">Другое</option>
+                    </select>
+                    <input type="submit" value="Показать">
+                </form>
+            </div>
             <div class="section-main-article__flex">
-                <div class="my-aplication__flex">
+                <div class="admin-aplication__flex">
                     <?php
                     require_once '../php/connection.php';
                     $linkToDataBase = mysqli_connect($host, $user, $password, $database);
@@ -204,7 +219,7 @@
                                 </div>
                                 $flex_button
                                 <div class=\"block-aplication__flex-category-date\">
-                                    <div class=\"block-aplication__category\">{$resultAplication['category']}</div>
+                                    <div class=\"block-aplication__category category_for_filter\">{$resultAplication['category']}</div>
                                     <div class=\"block-aplication__date\">{$resultAplication['date']}</div>
                                 </div>
                             </div>
@@ -217,6 +232,7 @@
             </div>
         </div>
     </section>
+    <script src="../js/filter.js"></script>
     <script>
         const cookieToPhp = '<?php echo $_COOKIE['loginUser'] ?>'
         if (cookieToPhp == '') {
