@@ -167,22 +167,22 @@
                     <h3><a href="#">Контакты</a></h3>
                 </div>
                 <?php
-                if ($_COOKIE['loginUser'] && $_COOKIE['loginUser'] != 'admin') {
+                if (empty($_COOKIE['loginUser'])) {
+                    echo "<div class=\"header__user\" id=\"userBlock\">
+                       <img src=\"img/icons/user.png\" alt=\"errorUpImage\">
+                        <h3>Войти</h3>
+                    </div>";
+                } else if (!empty($_COOKIE['loginUser']) && $_COOKIE['loginUser'] == 'admin') {
+                    echo "<div class=\"header__user-auth\">
+                         <a href=\"page/admin.php\"><img src=\"img/icons/admin.png\" alt=\"errorUpImage\"></a>
+                        <h2>{$_COOKIE['loginUser']}</h2>
+                        <h4><a href='php/exitUser.php'>Выйти</a></h4>
+                    </div>";
+                } else if (!empty($_COOKIE['loginUser'])) {
                     echo "<div class=\"header__user-auth\">
                      <a href=\"page/user.php\"><img src=\"img/icons/user-auth.png\" alt=\"errorUpImage\"></a>
                     <h2>{$_COOKIE['loginUser']}</h2>
                     <h4><a href='php/exitUser.php'>Выйти</a></h4>
-                </div>";
-                } else if ($_COOKIE['loginUser'] == 'admin') {
-                    echo "<div class=\"header__user-auth\">
-                     <a href=\"page/admin.php\"><img src=\"img/icons/admin.png\" alt=\"errorUpImage\"></a>
-                    <h2>{$_COOKIE['loginUser']}</h2>
-                    <h4><a href='php/exitUser.php'>Выйти</a></h4>
-                </div>";
-                } else {
-                    echo "<div class=\"header__user\" id=\"userBlock\">
-                   <img src=\"img/icons/user.png\" alt=\"errorUpImage\">
-                    <h3>Войти</h3>
                 </div>";
                 }
                 ?>

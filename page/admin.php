@@ -69,12 +69,23 @@
                     <h3><a href="#">Контакты</a></h3>
                 </div>
                 <?php
-                if ($_COOKIE['loginUser'] == 'admin') {
+                if (empty($_COOKIE['loginUser'])) {
+                    echo "<div class=\"header__user\" id=\"userBlock\">
+                       <img src=\"../img/icons/user.png\" alt=\"errorUpImage\">
+                        <h3>Войти</h3>
+                    </div>";
+                } else if (!empty($_COOKIE['loginUser']) && $_COOKIE['loginUser'] == 'admin') {
                     echo "<div class=\"header__user-auth\">
-                            <img src=\"../img/icons/admin.png\" alt=\"errorUpImage\">
-                            <h2>{$_COOKIE['loginUser']}</h2>
-                            <h4><a href='../php/exitUser.php'>Выйти</a></h4>
-                        </div>";
+                         <a href=\"../page/admin.php\"><img src=\"../img/icons/admin.png\" alt=\"errorUpImage\"></a>
+                        <h2>{$_COOKIE['loginUser']}</h2>
+                        <h4><a href='../php/exitUser.php'>Выйти</a></h4>
+                    </div>";
+                } else if (!empty($_COOKIE['loginUser'])) {
+                    echo "<div class=\"header__user-auth\">
+                     <a href=\"../page/user.php\"><img src=\"../img/icons/user-auth.png\" alt=\"errorUpImage\"></a>
+                    <h2>{$_COOKIE['loginUser']}</h2>
+                    <h4><a href='../php/exitUser.php'>Выйти</a></h4>
+                </div>";
                 }
                 ?>
             </div>
@@ -213,22 +224,22 @@
         }
     </script>
     <script>
-            // script img collection
-            const blockAplication = document.querySelectorAll('.block-aplication');
-            blockAplication.forEach((element) => {
-                let blockImg = element.querySelectorAll('.block__inner-img');
-                if (blockImg.length == 2) {
+        // script img collection
+        const blockAplication = document.querySelectorAll('.block-aplication');
+        blockAplication.forEach((element) => {
+            let blockImg = element.querySelectorAll('.block__inner-img');
+            if (blockImg.length == 2) {
+                blockImg[1].style.display = 'none';
+                blockImg[0].addEventListener('mouseover', () => {
+                    blockImg[0].style.display = 'none';
+                    blockImg[1].style.display = 'block';
+                })
+                blockImg[1].addEventListener('mouseout', () => {
                     blockImg[1].style.display = 'none';
-                    blockImg[0].addEventListener('mouseover', () => {
-                        blockImg[0].style.display = 'none';
-                        blockImg[1].style.display = 'block';
-                    })
-                    blockImg[1].addEventListener('mouseout', () => {
-                        blockImg[1].style.display = 'none';
-                        blockImg[0].style.display = 'block';
-                    })
-                }
-            });
+                    blockImg[0].style.display = 'block';
+                })
+            }
+        });
         // Кнопки на блоке заявки
         const adminBtnComplete = document.querySelectorAll('.adminBtnComplete');
         const adminBtnCansel = document.querySelectorAll('.adminBtnCansel');
